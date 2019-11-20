@@ -22,7 +22,7 @@ install:
   - cp -r frontend/build/ www/
 
 before_script:
-  - travis_install_go_dependencies $(go version)
+  - travis_install_go_dependencies $TRAVIS_GO_VERSION
 
 # The golang container that will be built is a linux OS for an amd64 architecture
 script: 
