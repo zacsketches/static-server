@@ -1,3 +1,6 @@
+# In this build we are going to push a docker container that includes
+# the static content build from a react app that will be served by
+# the golang server.
 language: 
   - go
   - node_js
@@ -11,6 +14,11 @@ node_js:
 services:
   - docker
 
+# Install takes steps ensure dependencies are in place and builds the 
+# production version of the frontend app.  After building it also
+# copies the static react app into the www folder where the go
+# server expects to find it.  The echo and ls commands provide better
+# log output in travis to support troubleshooting the build.
 install:
   - go get -t -v
   - cd frontend
@@ -22,18 +30,19 @@ install:
   - echo $PWD
   - cp -r frontend/build/ www/
   - ls www/
- 
 
-# before_script:
-#   - travis_install_go_dependencies $TRAVIS_GO_VERSION
-
-# The golang container that will be built is a linux OS for an amd64 architecture
+# The golang container that will be built is a linux OS 
+# and an amd64 architecture. The env settings prior to the go
+# build command ensures the build targets the right deployment
+# architecture.
 script: 
   - mkdir bin
   - pwd
   - ls -alF
   - env GOOS=linux GOARCH=amd64 go build -o bin/static-server
 
+# Once the source code is compiled we build the container....
+# and maybe use Travis to push it to DockerHub.  
 after_script:
   - docker build -t zacsketches/static-server .
   - docker image ls
