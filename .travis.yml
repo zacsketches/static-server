@@ -31,7 +31,7 @@ install:
   - npm run build
   - cd ..
   - echo $PWD
-  - cp -r frontend/build/ www/
+  - cp -r frontend/build/* www/
   - ls www/
 
 # The golang container that will be built is a linux OS 
