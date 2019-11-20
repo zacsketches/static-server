@@ -12,6 +12,7 @@ services:
   - docker
 
 install:
+  - travis_install_go_dependencies $TRAVIS_GO_VERSION
   - cd frontend
   - npm install -g create-react-app
   - npm install
@@ -20,9 +21,10 @@ install:
   - cd ..
   - echo $PWD
   - cp -r frontend/build/ www/
+ 
 
-before_script:
-  - travis_install_go_dependencies $TRAVIS_GO_VERSION
+# before_script:
+#   - travis_install_go_dependencies $TRAVIS_GO_VERSION
 
 # The golang container that will be built is a linux OS for an amd64 architecture
 script: 
