@@ -24,7 +24,9 @@ install:
 # The golang container that will be built is a linux OS for an amd64 architecture
 script: 
   - mkdir bin
-  - env GOOS=linux GOARC=amd64 go build -o bin/static-server
+  - pwd
+  - ls -alF
+  - env GOOS=linux GOARCH=amd64 go build -o bin/static-server
 
 after_script:
   - docker build -t zacsketches/static-server .
