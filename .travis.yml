@@ -11,6 +11,11 @@ go:
 node_js:
   - 13.1.x
 
+env:
+  global:
+    - secure: "LOIkZejTEe9FPmxiws21eXNhaMudMgosquX38eY0gyqpXvXdneAay+ofnjiuqZgUTho0uFO/zBJO/QxuobzSa8Qg5chwW55sphFaWrePqw+BaeoJqoTkMVrLrvNlx0V/vMvbSepyxGjHkhXe8ot+wqLQDJTj5aZl6xhxbK3Ucmq2OLkejLkgMNP2nLQq8T6rifBmJqOA32lwoilh+WqqrxlWj/B1eagg+GxEEyAtqdRFUZicx/7Cck72SI4458TuAPYSevQ/owav2c7Iv3LwH0fqeittBLIR6zVPfc0XIVmRBe+uYDA3Jeycz9LlUsniSdqtcwoPzi+JCtV9QEEaEMNks7mNkglLiTzgA9+XQ3D5PrAvPFnbaIkYJtAUv4N60EV+x3quz7GWeqSfR2m3vyIHOTi5rEw0s7W8TVk3G0uW2lqkLB90bCbBeUccBgU7UTD/IFCWtAy6HFyXaNBKtiF/uvUnW24NOmgF1E/UbL4ot5c/77iQ3xe9C3OI/+ZXGXxXuRJysJ+0uENBHWnGPFy0lbMdyris6Bm4apyzh6+DzlRKxWnaC7fCegK1+9nutt2MLa/dYEPxBDYQxajhM1Wup8++24o5vl0PqT2Ux9//3lxhL5QClv7jLZG3iUjvW8LQ8xZoaTxSolJU9WNrHhY9sgJ8gNVHHmTmqcKLLvA="
+    - DOCKER_USERNAME=zacsketches
+
 services:
   - docker
 
@@ -46,3 +51,9 @@ script:
 after_script:
   - docker build -t zacsketches/static-server .
   - docker image ls
+
+before_deploy:
+  - echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+deploy:
+  docker push zacsketches/static-server
