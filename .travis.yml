@@ -12,7 +12,7 @@ services:
   - docker
 
 install:
-  - go get -t
+  - go get -t -v
   - cd frontend
   - npm install -g create-react-app
   - npm install
@@ -21,6 +21,7 @@ install:
   - cd ..
   - echo $PWD
   - cp -r frontend/build/ www/
+  - ls www/
  
 
 # before_script:
