@@ -11,6 +11,9 @@ node_js:
 services:
   - docker
 
+after_install:
+  - npm install -g create-react-app
+
 before_script:
   - cd frontend
   - npm run build
