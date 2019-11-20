@@ -1,10 +1,22 @@
-language: go
+language: 
+  - go
+  - node_js
 
 go:
   - 1.13
 
+node_js:
+  - 13.1.x
+
 services:
   - docker
+
+before_script:
+  - cd frontend
+  - npm run build
+  - cd ..
+  - echo $PWD
+  - cp -r frontend/build/ www/
 
 # The golang container that will be built is a linux OS for an amd64 architecture
 script: 
