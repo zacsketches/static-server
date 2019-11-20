@@ -6,8 +6,10 @@ go:
 services:
   - docker
 
-before_install:
+script: 
   - mkdir bin
   - env GOOS=linux GOARC=amd64 go build -o bin/static-server
+
+after_script:
   - docker build -t zacsketches/static-server .
   - docker image ls
