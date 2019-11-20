@@ -14,10 +14,11 @@ services:
 before_script:
   - npm install -g create-react-app
   - cd frontend
-  - npm run build
-  - cd ..
-  - echo $PWD
-  - cp -r frontend/build/ www/
+  - echo create-react-app --version
+  # - npm run build
+  # - cd ..
+  # - echo $PWD
+  # - cp -r frontend/build/ www/
 
 # The golang container that will be built is a linux OS for an amd64 architecture
 script: 
