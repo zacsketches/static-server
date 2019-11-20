@@ -49,11 +49,7 @@ script:
 # Once the source code is compiled we build the container....
 # and maybe use Travis to push it to DockerHub.  
 after_script:
+  - echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t zacsketches/static-server .
   - docker image ls
-
-before_deploy:
-  - echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
-
-deploy:
-  docker push zacsketches/static-server
+  - docker push zacsketches/static-server  
