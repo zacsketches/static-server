@@ -1,15 +1,13 @@
 # In this build we are going to push a docker container that includes
 # the static content build from a react app that will be served by
 # the golang server.
-language: 
-  - go
-  - node_js
-
+language: go
+  
 go:
   - 1.13
 
-node_js:
-  - 13.1.x
+# node_js:
+#   - 13.1.x
 
 env:
   global:
