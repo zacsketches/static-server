@@ -11,14 +11,15 @@ node_js:
 services:
   - docker
 
-before_script:
-  - npm install -g create-react-app
+install:
   - cd frontend
+  - npm install create-react-app
+  - npm install
   - create-react-app --version
-  # - npm run build
-  # - cd ..
-  # - echo $PWD
-  # - cp -r frontend/build/ www/
+  - npm run build
+  - cd ..
+  - echo $PWD
+  - cp -r frontend/build/ www/
 
 # The golang container that will be built is a linux OS for an amd64 architecture
 script: 
