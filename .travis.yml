@@ -14,7 +14,7 @@ services:
 before_script:
   - npm install -g create-react-app
   - cd frontend
-  - echo create-react-app --version
+  - create-react-app --version
   # - npm run build
   # - cd ..
   # - echo $PWD
