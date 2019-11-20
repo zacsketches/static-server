@@ -2,3 +2,10 @@ language: go
 
 go:
   - 1.13
+
+services:
+  - docker
+
+before_install: 
+  - docker build -t zacsketches/static-server .
+  - docker image ls
