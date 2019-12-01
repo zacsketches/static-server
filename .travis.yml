@@ -17,7 +17,7 @@ env:
 services:
   - docker
 
-# Install takes steps ensure dependencies are in place and builds the 
+# Install takes steps to ensure dependencies are in place and builds the 
 # production version of the frontend app.  After building it also
 # copies the static react app into the www folder where the go
 # server expects to find it.  The echo and ls commands provide better
@@ -45,7 +45,7 @@ script:
   - env GOOS=linux GOARCH=amd64 go build -o bin/static-server
 
 # Once the source code is compiled we build the container....
-# and maybe use Travis to push it to DockerHub.  
+# and maybe use to push it to DockerHub.  
 after_script:
   - echo "$DOCKER_ACCESS_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t zacsketches/static-server .
